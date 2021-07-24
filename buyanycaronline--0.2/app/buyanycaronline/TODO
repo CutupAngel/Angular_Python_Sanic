@@ -1,0 +1,7 @@
+TODO - User update his profile and create / update ads. { user-profile page }
+TODO - Create new Ad form need major enhancement. { new-ad page }
+TODO - Ad update form { manage-ad }
+TODO - router security { Router }
+TODO - Search functionality { index }
+TODO - Ad details page { not created > copy car-detail page and inherit from it
+

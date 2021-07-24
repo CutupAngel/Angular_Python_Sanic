@@ -1,0 +1,10 @@
+This task list show what u need to do in this project 
+
+1- Integrate the AngularJS with Python Sanic ( I mean the API calls ) 
+2- After intergrating - enhance the forms in the UI make it fully functional all the API calls in the postman I shared with u.
+3- All strings in the UI must be in string.xml file so I can translate and make localization in the project 
+4- UI components in forms like ( drop down menus must be developed as per to dubizzle.com).
+
+5- We have Models create for example ( CAR / MOTORCYCLE / BOATS .. ETC ) in the server side. U need to understand what are they are and there parameters. 
+ U need to Understand the lifecycle of the Advertisement in the project and Each User Type Role. ( We have 3 Roles " Customer / Admin / Moderator")
+ Lastly, U need to have Python experinace so if we face problem in the integration we can fix it. 

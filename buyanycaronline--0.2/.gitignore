@@ -1,0 +1,6 @@
+
+.env
+node_modules/
+app/buyanycaronline/node_modules/
+.idea/
+app/buyanycaronline/dist/

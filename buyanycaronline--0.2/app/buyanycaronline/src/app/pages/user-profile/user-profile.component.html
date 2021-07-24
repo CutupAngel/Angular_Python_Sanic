@@ -1,0 +1,147 @@
+<!--main content-->
+<div class="main-content-wrapper">
+  <div class="container" id="up-container">
+    <div class="row">
+      <div id="AccSettingsBox-container">
+        <div id="AccSettings-box">
+          <h2>Account Settings</h2>
+          <div style="margin-top: 20px;">
+            <div>
+              <form [formGroup]="updateUsernameForm">
+                <div class="form-group">
+                  <div>
+                    <span>Name: </span><a>{{currentUser.username}}</a><i (click)="revealView($event)" id="usernamePen"
+                                                                         class="fa fa-pencil" aria-hidden="true"></i>
+                  </div>
+                  <div class="d-none">
+                    <input type="email" formControlName="username" class="form-control ba-input"
+                           placeholder="Enter email address"/>
+                    <div class="text-danger">
+                      <div *ngIf=" updateUsernameControls.username.errors">
+                        <p *ngIf="updateUsernameControls.username.errors.required">User Name is required</p>
+                        <p *ngIf="updateUsernameControls.username.errors.email">Must be an email</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button style="margin-top: 10px" (click)="updateUser(updateUsernameForm, 0)" type="submit"
+                          class="d-none btn btn-danger"
+                          data-toggle="modal"
+                          data-target="#loading">Update
+                  </button>
+                  <button style="margin-top: 10px" type="button" (click)="cancel()"
+                          class="d-none btn btn-danger">Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div>
+              <form [formGroup]="updateHashForm">
+                <div>
+                  <span>Password: </span><a>**********</a><i (click)="revealView($event)" id="passwordPen"
+                                                             class="fa fa-pencil"
+                                                             aria-hidden="true"></i>
+                </div>
+                <div class="d-none">
+                  <input formControlName="hash" class="form-control ba-input" type="password"
+                         placeholder="Enter password">
+                  <div class="text-danger" *ngIf="updateHashControls.hash.errors">
+                    <div *ngIf="updateHashControls.hash.errors.required">Password is required</div>
+                    <div *ngIf="updateHashControls.hash.errors.minlength">Password must be at least 6 characters
+                    </div>
+                  </div>
+                </div>
+                <div class="d-none">
+                  <input formControlName="confirmHash" class="form-control ba-input"
+                         type="password" placeholder="Enter confirm password">
+                  <div class="text-danger" *ngIf="updateHashControls.confirmHash.errors">
+                    <div *ngIf="updateHashControls.confirmHash.errors.required">Confirm Password is required</div>
+                    <div *ngIf="updateHashControls.confirmHash.errors.minlength">Password must be at least 6
+                      characters
+                    </div>
+                    <div *ngIf="updateHashControls.confirmHash.errors.mustMatch">Passwords must match</div>
+                  </div>
+                </div>
+                <button style="margin-top: 10px" (click)="updateUser(updateUsernameForm, 1)" type="submit"
+                        class="d-none btn btn-danger"
+                        data-toggle="modal"
+                        data-target="#loading">Update
+                </button>
+                <button style="margin-top: 10px" type="button" (click)="cancel()"
+                        class="d-none btn btn-danger">Cancel
+                </button>
+              </form>
+            </div>
+            <div class="hf-label">ADDRESS</div>
+            <form [formGroup]="updateAddressForm">
+              <div>
+                <span>Country: </span><a>{{currentUser.country}}</a><i (click)="revealView($event)"
+                                                                       id="countryPen"
+                                                                       class="fa fa-pencil"
+                                                                       aria-hidden="true"></i>
+              </div>
+              <div class="d-none">
+                <input formControlName="country" class="ba-input" type="text" placeholder="Enter country">
+              </div>
+
+              <div>
+                <span>City: </span><a>{{currentUser.city}}</a>
+              </div>
+              <div class="d-none">
+                <input formControlName="city" class="ba-input" type="text" placeholder="Enter city">
+              </div>
+              <div class="hf-label">Contact details</div>
+              <div>
+                <span>Mobile: </span><a>{{currentUser.mobile}}</a>
+              </div>
+              <div class="d-none">
+                <input formControlName="mobile" class="ba-input" type="number" placeholder="Enter mobile number">
+              </div>
+              <button style="margin-top: 10px" (click)="updateUser(updateUsernameForm, 2)" type="submit"
+                      class="d-none btn btn-danger"
+                      data-toggle="modal"
+                      data-target="#loading">Update
+              </button>
+              <button style="margin-top: 10px" type="button" (click)="cancel()"
+                      class="d-none btn btn-danger">Cancel
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="manageAdsBox-container">
+        <div id="manageAds-box">
+          <h2>Manage Ads</h2>
+          <div *ngIf="ads === null">
+            <h4>You have not published any advertisement yet </h4>
+          </div>
+          <div class="manageAdsItem" *ngFor="let ad of ads">
+            <div class="manageAdsItem-left">
+              <div><span>Title: </span>{{ad.title}}</div>
+              <div><span>Price: </span>{{ad.price | currency}}</div>
+              <div class="description"><span>Description: </span>
+                <div class="ads-description">{{ad.description}}</div>
+              </div>
+            </div>
+            <div class="manageAdsItem-right">
+              <a href="/manage-ad/{{ad.id}}">
+                <button>Modify</button>
+              </a>
+              <button>Mark as sold</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="NewAdBox-container">
+        <div id="NewAd-box">
+          <h2>New Ad?</h2>
+          <a routerLink="/new-ad">
+            <button type="submit" class="button">
+              <i class="fa fa-plus-square" aria-hidden="true"></i> Click here
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

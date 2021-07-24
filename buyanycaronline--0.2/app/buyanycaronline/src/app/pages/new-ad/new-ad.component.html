@@ -1,0 +1,215 @@
+<!--main content-->
+<div class="main-content-wrapper">
+  <div class="container" id="nap-container">
+    <div class="loader" style="display:none;"></div>
+    <div class="row">
+      <form [formGroup]="newForm" id="newForm" method="post">
+        <div id="vehicleDetailsBox-container">
+          <div id="vehicleDetails-box">
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <h2>Ad Details</h2>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <div class="hf-label" style="">TITLE</div>
+                <input formControlName="title" class="form-control ad-input" type="text"
+                  [ngClass]="{ 'is-invalid': submitted && fNew.title.errors }" placeholder="Enter title" />
+                <div *ngIf="submitted && fNew.title.errors" class="invalid-feedback">
+                  <div *ngIf="fNew.title.errors.required">Title is required</div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <div class="hf-label" style="">PRICE</div>
+                <input formControlName="price" class="form-control ad-input" type="number"
+                  [ngClass]="{ 'is-invalid': submitted && fNew.price.errors }" placeholder="Enter price" />
+                <div *ngIf="submitted && fNew.price.errors" class="invalid-feedback">
+                  <div *ngIf="fNew.price.errors.min">Price is only required positive number</div>
+                  <div *ngIf="fNew.price.errors.required">Price is required </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <div class="hf-label" style="">DESCRIPTION</div>
+                <textarea formControlName="description" class="form-control ad-textarea" cols="30" rows="10"
+                  aria-invalid="false" [ngClass]="{ 'is-invalid': submitted && fNew.description.errors }"
+                  placeholder="Enter description" id="description"></textarea>
+                <div *ngIf="submitted && fNew.description.errors" class="invalid-feedback">
+                  <div *ngIf="fNew.description.errors.required">Description is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="vehicleDetailsBox2-container">
+          <div id="vehicleDetails-box">
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <h2>Vehicle Details</h2>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <div class="hf-label" style="">MAKE</div>
+                <div class="hf-select">
+                  <select formControlName="make_id" class="form-control selectpicker"
+                    [ngClass]="{ 'is-invalid': submitted && fNew.make_id.errors }" (change)="onMakeChange($event)"
+                    title="SELECT NAME" data-width="100%">
+                    <option *ngFor="let make of makes" [value]="make.id">{{make.value}}</option>
+                  </select>
+                  <div *ngIf="submitted && fNew.make_id.errors" class="invalid-feedback">
+                    <div *ngIf="fNew.make_id.errors.required">Make is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <div class="hf-label">MODEL</div>
+                <div class="hf-select">
+                  <select formControlName="model_id" class="form-control selectpicker"
+                    [ngClass]="{ 'is-invalid': submitted && fNew.model_id.errors }" title="SELECT MODEL"
+                    data-width="100%">
+                    <option *ngFor="let model of models" [value]="model.id">{{model.modelvalue}}</option>
+                  </select>
+                  <div *ngIf="submitted && fNew.model_id.errors" class="invalid-feedback">
+                    <div *ngIf="fNew.model_id.errors.required">Model is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <div class="hf-label">YEAR</div>
+                <div class="hf-select">
+                  <select formControlName="year" class="form-control selectpicker"
+                    [ngClass]="{ 'is-invalid': submitted && fNew.year.errors }" title="SELECT YEAR" data-width="100%">
+                    <option *ngFor="let year of years" [value]="year">{{year}}</option>
+                  </select>
+                  <div *ngIf="submitted && fNew.year.errors" class="invalid-feedback">
+                    <div *ngIf="fNew.year.errors.required">Year is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <div class="hf-label">FUEL TYPE</div>
+                <div class="hf-select">
+                  <select formControlName="fueltype" class="form-control selectpicker"
+                    [ngClass]="{ 'is-invalid': submitted && fNew.fueltype.errors }" title="SELECT FUELTYPE"
+                    data-width="100%">
+                    <option *ngFor="let fueltype of fueltypes" [value]="fueltype">{{fueltype}}</option>
+                  </select>
+                  <div *ngIf="submitted && fNew.fueltype.errors" class="invalid-feedback">
+                    <div *ngIf="fNew.fueltype.errors.required">Fueltype is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <div class="hf-label">CONDITION
+                </div>
+                <div class="hf-select">
+                  <select formControlName="condition" class="form-control selectpicker"
+                    [ngClass]="{ 'is-invalid': submitted && fNew.condition.errors }" title="SELECT CONDITION"
+                    data-width="100%">
+                    <option *ngFor="let condition of conditions" [value]="condition">{{condition}}</option>
+                  </select>
+                  <div *ngIf="submitted && fNew.condition.errors" class="invalid-feedback">
+                    <div *ngIf="fNew.condition.errors.required">Condition is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <div class="hf-label">TYPE
+                </div>
+                <div class="hf-select">
+                  <select class="form-control selectpicker " title="SELECT TYPE" data-width="100%"
+                    (change)="changeTypes($event)">
+                    <option *ngFor="let type of types" [value]="type.value">{{type.value}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12" [hidden]="inputType!='BOAT'">
+                <div class="hf-label">LENGTH</div>
+                <div class="hf-select">
+                  <select formControlName="length" class="form-control selectpicker"
+                    [ngClass]="{ 'is-invalid': submitted && fNew.length.errors }" title="SELECT LENGTH"
+                    data-width="100%">
+                    <option *ngFor="let length of lengths" [value]="length.id">{{length.length}}</option>
+                  </select>
+                  <div *ngIf="submitted && fNew.length.errors" class="invalid-feedback">
+                    <div *ngIf="fNew.length.errors.required&&inputType=='BOAT'">Length is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12" [hidden]="inputType!='CAR'">
+                <div class="hf-label">TRANSMISSION</div>
+                <div class="hf-select">
+                  <select formControlName="transmission" class="form-control selectpicker"
+                    [ngClass]="{ 'is-invalid': submitted && fNew.transmission.errors }" title="SELECT TRANSMISSION"
+                    data-width="100%">
+                    <option *ngFor="let transmission of transmissions" [value]="transmission">{{transmission}}</option>
+                  </select>
+                  <div *ngIf="submitted && fNew.transmission.errors" class="invalid-feedback">
+                    <div *ngIf="fNew.transmission.errors.required&&inputType=='CAR'">Transmission is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12" [hidden]="inputType!='CAR'">
+                <div class="hf-label">COLOR</div>
+                <div class="hf-select">
+                  <select formControlName="color" class="form-control selectpicker"
+                    [ngClass]="{ 'is-invalid': submitted && fNew.color.errors }" title="SELECT COLOR" data-width="100%">
+                    <option *ngFor="let color of colors" [value]="color">{{color}}</option>
+                  </select>
+                  <div *ngIf="submitted && fNew.color.errors&&inputType=='CAR'" class="invalid-feedback">
+                    <div *ngIf="fNew.color.errors.required&&inputType=='CAR'">Color is required</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12 col-sm-12" [hidden]="inputType!='CAR'">
+                <div class="hf-label">Features</div>
+                <label class="hf-checkbox" *ngFor="let feature of features">
+                  <input type="checkbox" [value]="feature">{{feature}}
+                </label>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <button type="submit" class="button" id="hf-button">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div id="uploadPhotoBox-container" style="display:block;">
+        <div id="uploadPhoto-box" style="display:block;">
+          <div style="border-bottom: 1px solid #2f3c40;">
+            <h2>Upload Photos</h2>
+          </div>
+          <!-- <div id="uploadPhotoBoxItem-container">
+						<div class="uploadPhotoBox-item" *ngFor = "let imgFile of imgFiles;">
+							<div class="uploadPhotoBox-image">
+								<img [src]="imgFile">
+							</div>
+							<button class="uploadPhotoBox-delete" (click) = "onDeleteSubmit(imgFile)" [attr.data-index]="i">Delete</button>
+						</div>
+					</div> -->
+          <div class="photo-array">
+            <div class="add-Photo">
+              <form [formGroup]="uploadForm">
+                <input type="file" name="carimg" (change)="onFileChange($event)" />
+                <button class="add-Photo-btn"></button>
+              </form>
+            </div>
+            <!-- id="uploadPhotoBox-preview" -->
+            <div class="exist-photo" *ngFor="let item of img_arr">
+              <div class="close-btn">
+                <img src="../../../assets/img/Close.png" (click)="closeImage(item)" />
+              </div>
+              <img src="{{item.base64}}" class="preview-img">
+            </div>
+          </div>
+
+        </div>
+        <div id="publishButton-container">
+          <button class="col-md-4 uploadPhotoBox-uploadButton pt-2" [hidden]="currentUser.type!='ADMIN'"
+            (click)="onPublishSubmit()">Publish</button>
+          <button class="col-md-4 uploadPhotoBox-uploadButton pt-2" [hidden]="currentUser.type!='USER'"
+            (click)="onPublishSubmit()">User's Button</button>
+          <button class="col-md-4 uploadPhotoBox-uploadButton pt-2" (click)="onUploadSubmit()">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

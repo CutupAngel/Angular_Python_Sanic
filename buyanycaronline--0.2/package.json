@@ -1,0 +1,37 @@
+{
+  "name": "buyanycaronline",
+  "version": "1.0.0",
+  "description": "Online market place ",
+  "main": "app/server.js",
+  "scripts": {
+    "ng serve": "cd app/buyanycaronline && ng serve",
+    "ng": "cd app/buyanycaronline && ng b",
+    "clean": "rimraf app/public/*",
+    "copy-angular": "node config/shelljs.config.js",
+    "build": "npm-run-all clean copy-angular",
+    "dev": "node .",
+    "start": "npm-run-all ng build dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohamed Al Mehairbi",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.1.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.1",
+    "express-jwt-permissions": "^1.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "fs-extra": "^8.1.0",
+    "nodemon": "^1.19.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.0",
+    "shelljs": "^0.8.3"
+  }
+}

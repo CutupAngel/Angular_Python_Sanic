@@ -1,0 +1,64 @@
+<!--main content-->
+<div class="main-content-wrapper">
+  <div class="container" id="ma-container">
+    <div class="row">
+      <div id="adListBox-container">
+        <div id="adList-box">
+          <div class="adList-item" *ngFor="let ad of ads">
+            <div class="adList-info">
+              <div><span style='cursor:pointer;' (click)="getCarByAdId(ad.id)">Ad Number: </span>222</div>
+              <div><span>Title: </span>{{ad.title}}</div>
+              <div><span>Price: </span>{{ad.price | currency}}</div>
+              <div><span>Created Date: </span>{{ad.create_at}}</div>
+            </div>
+            <div class="adList-buttons">
+              <button (click)="approveAd(ad)">Approve</button>
+              <button>Reject</button>
+              <button (click)="deleteAd(ad)"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="adSelectedBox-container">
+        <div id="adSelectedSearch-box">Search:
+          <input type="text" placeholder="Ad Number..">
+          <button><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+        <div id="adSelected-box">
+          <div id="adSelected-number"><span>Ad Number: </span></div>
+          <div id="adSelected-info">
+            <div class="hf-label">Vehicle Details</div>
+            <div><span>Make: </span> {{car.make}}</div>
+            <div><span>Model: </span> {{car.model}}</div>
+            <div><span>Year:</span> {{car.year}}</div>
+            <div><span>Price:</span> {{car.price | currency}}</div>
+            <div><span>Transmission:</span> {{car.transmission}}</div>
+            <div><span>Fuel:</span> {{car.fueltype}}
+            </div>
+            <div><span>Description: </span>
+              <br>{{car.description}}
+            </div>
+            <div><span>Features: </span>
+              <br>
+              <ul *ngFor="let feature of features">
+                <li>{{feature}}</li>
+              </ul>
+            </div>
+          </div>
+          <div id="adSelected-preview">
+            <div id="adSelected-previewImage">
+              <i class="fa fa-caret-left" aria-hidden="true" style="left:5px;" id='vd-previewImageLeft'></i>
+              <img *ngIf="previewImgFile" [src]="previewImgFile">
+              <i class="fa fa-caret-right" aria-hidden="true" style="right: 5px;" id='vd-previewImageRight'></i>
+            </div>
+            <div id="adSelectedPreviewItems">
+              <div class="adSelectedItem-image" *ngFor="let imgFile of imgFiles">
+                <img [src]="imgFile" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
